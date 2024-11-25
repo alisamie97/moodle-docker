@@ -1,6 +1,6 @@
 services:
   mariadb:
-    image: bitnami/mariadb:11.4
+    image: bitnami/mariadb:11.5.2
     restart: always
     environment:
       ALLOW_EMPTY_PASSWORD: yes
@@ -13,17 +13,17 @@ services:
     volumes:
       - mariadb_data:/bitnami/mariadb
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.1
+    image: bitnami/phpmyadmin:5.2.1
     restart: always
     environment:
       MAX_EXECUTION_TIME: 600
       MEMORY_LIMIT: 512M
-      UPLOAD_LIMIT: 2048K
-      PMA_HOST: mariadb
-      PMA_USER: moodle
-      PMA_PASSWORD: moodle
+      UPLOAD_LIMIT: 512M
+      DATABASE_HOST: mariadb
+      DATABASE_USER: moodle
+      DATABASE_PASSWORD: moodle
     ports:
-      - 8080:80
+      - 8080:8080
     depends_on:
       - mariadb
   moodle:
