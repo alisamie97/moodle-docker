@@ -28,7 +28,7 @@ services:
       - mariadb
   moodle:
     image: bitnami/moodle:4.5
-    # restart: always
+    restart: always
     environment:
       BITNAMI_DEBUG: true
       MOODLE_DATABASE_HOST: mariadb
